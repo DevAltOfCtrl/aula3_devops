@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Formulários HTML5 - Exercício 1</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <style>
+        body {
+            background-image: url('https://i.ytimg.com/vi/5-LyRjHlRgQ/maxresdefault.jpg');
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            cursor: pointer;
+            font-size: 16px;
+
+        }
+
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+        }
+
+        .container:hover input~.checkmark {
+            background-color: #ccc;
+        }
+
+        .container input:checked~.checkmark {
+            background-color: #2196F3;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .container input:checked~.checkmark:after {
+            display: block;
+        }
+
+        .container .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        #entrar {
+            background-color: darkred;
+            color: white;
+            border: 1px solid darkred;
+            padding: 7px;
+            border-radius: 3px;
+            float: right;
+            width: 100px;
+        }
+
+        #entrar:hover {
+            background-color: white;
+            color: darkred;
+            border: 1px solid darkred;
+            cursor: pointer;
+            transition: 1s;
+        }
+
+        input[type=email],
+        textarea {
+            width: 93%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 0px;
+            background-color: rgba(233, 232, 232, 0.89);
+            resize: vertical;
+            margin-bottom: 7px;
+            border-bottom: 3px solid darkred;
+        }
+
+        input[type=password],
+        textarea {
+            width: 93%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 0px;
+            background-color: rgba(233, 232, 232, 0.89);
+            resize: vertical;
+            border-bottom: 3px solid darkred;
+            margin-bottom: 10px;
+        }
+
+        input[type=checkbox],
+        textarea {
+            margin-bottom: 7px;
+        }
+
+        form {
+            font-family: consolas;
+            font-size: 15px;
+            color: white;
+        }
+
+        #formulario {
+            width: 30%;
+            height: 210px;
+            margin: auto;
+            background-color: rgba(0, 0, 0, 0.753);
+            padding: 10px;
+            border-radius: 10px;
+            border-bottom: 2px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        FORM1 - Formulário de Login
+
+        Construa um formulário de login de sistemas que tenha os seguintes campos:
+        -- E-mail: deve ser obrigatório e deve validar e-mails corretamente. Use o nome de campo 'email'.
+        -- Senha: deve ser obrigatório e proteger a visualização dos caracteres. Use o nome de campo 'senha'.
+        -- Lembre-se de mim: deve permitir ser selecionado e desselecionado. Use o nome de campo 'lembrar' e valor 'S'.
+        -- Botão de Submissão: deve possuir o texto ENTRAR (tudo maiúsculo).
+    -->
+    <div id="formulario" style="margin-top: 150px;">
+        <form id="form1" method="post">
+            <label for="email">E-MAIL</label><br>
+            <input type="email" name="email" id="email" required><br>
+            <label for="senha">SENHA</label><br>
+            <input type="password" name="senha" id="senha" required><br>
+            <label for="lembrar" class="container">Lembrar
+                minha senha
+                <input type="checkbox" name="lembrar" id="lembrar"><span class="checkmark"></span></label><br>
+            <input id="entrar" type="submit" value="ENTRAR">
+        </form>
+    </div>
+    <script>
+        var email = document.getElementById("email").value;
+        var senha = document.getElementById("senha").value;
+        var entrar = document.getElementById("entrar");
+
+        entrar.onclick = function () { sweet_test() };
+        function sweet_test() {
+            if (email == "" || senha == "") {
+                swal("Atenção!", "Insira o seu e-mail e sua senha e clique em ENTRAR", "warning");
+                return;
+            }
+        }
+    </script>
+</body>
+
+</html>
